@@ -7,14 +7,14 @@ function SalesOrder(customer, TaxRate, items) {
     salesOrder.getValue = function() {
         totalValue = 0.0;
         salesOrder.items.forEach(item => {
-            totalValue = totalValue + item.givePrice();
+            totalValue = totalValue + item.Price();
         });
         return totalValue;
     }
 
     salesOrder.TotalValue  = function () {
-        priceWithoutSalesTax = salesOrder.getValue();
-        priceWithSalesTax = salesOrder.getValue() + (priceWithoutSalesTax * salesOrder.TaxRate);
+        subtotal = salesOrder.getValue();
+        priceWithSalesTax = salesOrder.getValue() + (subtotal * salesOrder.TaxRate);
         return priceWithSalesTax;
     }
 

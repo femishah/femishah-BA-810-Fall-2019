@@ -1,9 +1,9 @@
-SalesOrderItem = require("./salesorderitem");
-SalesOrder = require("./salesorder");
+ let SalesOrderItem = require("./salesorderitem");
+ let SalesOrder = require("./salesorder");
 
-  widget = new SalesOrderItem("Widget", 2.5, 10);
-  gidget = new SalesOrderItem("Gidget", 1.0, 20);
+   let myWidget = new SalesOrderItem("Widget", 2.5, 10);
+   let myGidget = new SalesOrderItem("Gidget", 1.0, 20);
 
-  order = new SalesOrder("Customer 1", 0.10, [widget, gidget]);
+   let myOrder = new SalesOrder("Customer 1", 0.10, [myWidget, myGidget]);
  
-  console.log(order.TotalValue())
+  console.log(myOrder.TotalValue())
