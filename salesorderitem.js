@@ -4,7 +4,7 @@ function SalesOrderItem(product, price, quantity) {
     item.price = price;
     item.quantity = quantity;
 
-    item.givePrice = function() {
+    item.Price = function() {
         return item.price * item.quantity;
     }
     return item;
