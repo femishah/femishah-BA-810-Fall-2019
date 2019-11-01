@@ -1,7 +1,7 @@
 var express = require('express');
 var morgan = require('morgan');
 const logger = require('./logger');
-const mongoose = require('mongoose');
+var mongoose = require('mongoose');
 const fs = require('fs');
 
 

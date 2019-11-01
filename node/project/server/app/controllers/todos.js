@@ -2,7 +2,7 @@
 var express = require('express'),
     router = express.Router(),
     logger = require('../../config/logger'),
-   var mongoose = require('mongoose'),
+    mongoose = require('mongoose'),
     Todo = mongoose.model('todos');
 
 module.exports = function (app, config) {
