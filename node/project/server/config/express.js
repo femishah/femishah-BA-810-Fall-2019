@@ -60,13 +60,17 @@ module.exports = function (app, config) {
 
 
     app.use(function (err, req, res, next) {
+        if(process.env.NODE_ENV !== 'test'){
+            console.error(err.stack);
+        }
 
-        console.error(err.stack);
+        //console.error(err.stack);
         res.type('text/plan');
         res.status(500);
         res.send('500 Sever Error');
     });
 
-    console.log("Starting application");
+    //console.log("Starting application");
+    logger.log('info', "Starting Application");
 
 };

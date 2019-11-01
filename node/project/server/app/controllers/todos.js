@@ -3,7 +3,7 @@ var express = require('express'),
     router = express.Router(),
     logger = require('../../config/logger'),
     mongoose = require('mongoose'),
-    Todo = mongoose.model('Todo');
+    Todo = mongoose.model('todos');
 
 module.exports = function (app, config) {
     app.use('/api', router);//middleware that installs the router all routes will go below here in this loop only 
@@ -54,7 +54,7 @@ module.exports = function (app, config) {
                 if (user) {
                     res.status(200).json(user);
                 } else {
-                    res.status(404).json({ message: "No Todo found" });
+                    res.status(404).json({ message: "No Todos found" });
                 }
             })
             .catch(error => {
@@ -100,7 +100,7 @@ module.exports = function (app, config) {
         res.status(201).json(obj);
     });
 
-    
+
     router.route('/Todos/:id').delete((req, res, next) => {
         logger.log('info', 'Get Todo %s', req.params.id);
 
@@ -116,6 +116,6 @@ module.exports = function (app, config) {
 
 };
 
- 
+
 
 
