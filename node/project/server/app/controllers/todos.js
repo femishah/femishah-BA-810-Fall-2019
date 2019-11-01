@@ -100,7 +100,6 @@ module.exports = function (app, config) {
         res.status(201).json(obj);
     });
 
-
     router.route('/Todos/:id').delete((req, res, next) => {
         logger.log('info', 'Get Todo %s', req.params.id);
 
@@ -115,7 +114,6 @@ module.exports = function (app, config) {
 
 
 };
-
 
 
 
