@@ -28,7 +28,7 @@ module.exports = function (app, config) {
     });
 
     router.route('/todos/user/:id').get((req, res, next) => {
-        logger.log('info', 'Get all user todos', req.params.id);
+        logger.log('info', 'Get all user todos' + req.params.id);
 
         var query = Todo.find()
             .sort(req.query.order)
@@ -47,12 +47,12 @@ module.exports = function (app, config) {
     });
 
     router.route('/todos/:id').get((req, res, next) => {
-        logger.log('info', 'Get todo %s', req.params.id);
+        logger.log('info', 'Get Todo %s'+  req.params.id);
 
-        User.findById(req.params.id)
-            .then(user => {
-                if (user) {
-                    res.status(200).json(user);
+        Todo.findById(req.params.id)
+            .then(todos => {
+                if (todos) {
+                    res.status(200).json(todos);
                 } else {
                     res.status(404).json({ message: "No Todos found" });
                 }
@@ -65,7 +65,7 @@ module.exports = function (app, config) {
     });
 
     router.route('/todos/:id').put((req, res, next) => {
-        logger.log('info', 'Get Todo %s', req.params.id);
+        logger.log('info', 'Get Todo %s' +  req.params.id);
 
         Todo.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true, multi: false })
             .then(Todo => {
@@ -79,9 +79,8 @@ module.exports = function (app, config) {
     });
     router.route('/todos').post((req, res, next) => {
         logger.log('info', 'Create Todo');
-
-        var Todo = new Todo(req.body);
-        Todo.save()
+        var todo = new Todo(req.body);
+        todo.save()
             .then(result => {
                 res.status(201).json(result);
             })
@@ -91,17 +90,8 @@ module.exports = function (app, config) {
 
     });
 
-    router.route('/todos/login').post((req, res, next) => {
-        logger.log('info', '%s logging in', req.body.email);
-        var email = req.body.email
-        var password = req.body.password;
-
-        var obj = { 'email': email, 'password': password };
-        res.status(201).json(obj);
-    });
-
-    router.route('/Todos/:id').delete((req, res, next) => {
-        logger.log('info', 'Get Todo %s', req.params.id);
+    router.route('/todos/:id').delete((req, res, next) => {
+        logger.log('info', 'Get Todo %s' +  req.params.id);
 
         Todo.remove({ _id: req.params.id })
             .then(Todo => {

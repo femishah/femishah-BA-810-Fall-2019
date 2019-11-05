@@ -2,13 +2,20 @@
 'use strict'
 var express = require('express'),
     router = express.Router(),
-    logger = require('../../config/logger'),
+    logger = require('../../config/logger'), 
     mongoose = require('mongoose'),
-    User = mongoose.model('User');
+    User = mongoose.model('User'),
+    passportService = require('../../config/passport'),
+passport = require('passport');
+
+const requireLogin = passport.authenticate('local', { session: false });
+const requireAuth = passport.authenticate('jwt', { session: false });
+
 
 module.exports = function (app, config) {
     app.use('/api', router);//middleware that installs the router all routes will go below here in this loop only 
-    router.route('/users').get((req, res, next) => {
+
+    router.route('/users').get( (req, res, next) => {
         logger.log('info', 'Get all users');
 
         var query = User.find()
@@ -27,9 +34,9 @@ module.exports = function (app, config) {
 
 
     });
-    router.route('/users').post((req, res, next) => {
-        logger.log('info', 'Create user');
 
+    router.route('/users').post( (req, res, next) => {
+        logger.log('info', 'Create user');
         var user = new User(req.body);
         user.save()
             .then(result => {
@@ -41,17 +48,19 @@ module.exports = function (app, config) {
 
     });
 
-    router.route('/users/login').post((req, res, next) => {
-        logger.log('info', '%s logging in', req.body.email);
-        var email = req.body.email
-        var password = req.body.password;
+    // router.route('/users/login').post((req, res, next) => {
+    //     logger.log('info', '%s logging in', req.body.email);
+    //     var email = req.body.email
+    //     var password = req.body.password;
 
-        var obj = { 'email': email, 'password': password };
-        res.status(201).json(obj);
-    });
+    //     var obj = { 'email': email, 'password': password };
+    //     res.status(201).json(obj);
+    // });
+    router.route('/users/login').post(requireLogin, login),
 
 
-    router.route('/users/:id').get((req, res, next) => {
+
+    router.route('/users/:id').get( (req, res, next) => {
         logger.log('info', 'Get user %s', req.params.id);
 
         User.findById(req.params.id)
@@ -68,7 +77,7 @@ module.exports = function (app, config) {
 
 
     });
-    router.route('/users/:id').put((req, res, next) => {
+    router.route('/users/:id').put( (req, res, next) => {
         logger.log('info', 'Get user %s', req.params.id);
 
         User.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true, multi: false })
@@ -81,8 +90,29 @@ module.exports = function (app, config) {
 
 
     });
+    router.put('/users/password/:id', function (req, res, next) {
+        logger.log('info', 'Update user ' + req.params.id);
+        User.findById(req.params.id)
+            .exec()
+            .then(function (user) {
+                if (req.body.password !== undefined) {
+                    user.password = req.body.password;
+                }
+                user.save()
+                    .then(function (user) {
+                        res.status(200).json(user);
+                    })
+                    .catch(function (err) {
+                        return next(err);
+                    });
+            })
+            .catch(function (err) {
+                return next(err);
+            });
+    });
 
-    router.route('/users/:id').delete((req, res, next) => {
+
+    router.route('/users/:id').delete( (req, res, next) => {
         logger.log('info', 'Get user %s', req.params.id);
 
         User.remove({ _id: req.params.id })
@@ -94,10 +124,4 @@ module.exports = function (app, config) {
             });
     });
 
-
-
 };
-
-
-
-
