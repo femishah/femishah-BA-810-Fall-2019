@@ -6,6 +6,8 @@ var express = require('express'),
     mongoose = require('mongoose'),
     Gadget = mongoose.model('gadgets');
 
+    //Gadgets controllers file
+
 module.exports = function (app, config) {
     app.use('/api', router);//middleware that installs the router all routes will go below here in this loop only 
     router.route('/gadgets').get((req, res, next) => {
