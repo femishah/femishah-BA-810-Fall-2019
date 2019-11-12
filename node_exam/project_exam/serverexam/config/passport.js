@@ -1,6 +1,7 @@
 const passport = require('passport'),
     jwt = require('jsonwebtoken'),
-    User = require('../app/models/users'),
+  
+    Gadget = require('../app/models/gadgets'),
     config = require('./config'),
     jwtStrategy = require('passport-jwt').Strategy,
     extractJwt = require('passport-jwt').ExtractJwt,
@@ -8,9 +9,9 @@ const passport = require('passport'),
 var localOptions = { usernameField: 'email' };
 
 var localLogin = new localStrategy(localOptions, function (email, password, next) {
-    User.findOne({ email: email }).exec()
-        .then(function (user) {
-            if (!user) {
+    Gadget.findOne({ email: email }).exec()
+        .then(function (gadget) {
+            if (!gadget) {
                 return next({ status: "404", message: "Email not found." });
             } else {
                 user.comparePassword(password, function (err, isMatch) {
@@ -19,15 +20,15 @@ var localLogin = new localStrategy(localOptions, function (email, password, next
                     } else if (!isMatch) {
                         return next({ status: 401, message: 'Invalid username or password' });
                     } else {
-                        return next(null, user);
+                        return next(null, gadget);
                     }
                 });
             }
         })
         .catch(function (err) { return next(err); });
 });
-generateToken = function (user) {
-    return jwt.sign(user, config.secret, {
+generateToken = function (gadget) {
+    return jwt.sign(gadget, config.secret, {
         expiresIn: 10000
     });
 };
@@ -35,16 +36,16 @@ generateToken = function (user) {
 setUserInfo = function (req) {
     return {
         _id: req._id,
-        firstName: req.firstName,
-        lastName: req.lastName,
+        Yoo: req.yoo,
+        Hoo: req.hoo,
         email: req.email,
         issuer: "edu.uwm"
     };
 };
 
 login = function (req, res, next) {
-    var userInfo = setUserInfo(req.user);
-    res.status(200).json({ token: generateToken(userInfo), user: req.user });
+    var gadgetInfo = setUserInfo(req.gadget);
+    res.status(200).json({ token: generateToken(gadgetInfo), gadget: req.gadget });
 };
 var jwtOptions = {
     jwtFromRequest: extractJwt.fromAuthHeaderAsBearerToken(),
@@ -52,10 +53,10 @@ var jwtOptions = {
 };
 
 var jwtLogin = new jwtStrategy(jwtOptions, function (payload, next) {
-    User.findById(payload._id).exec()
-        .then(function (user) {
-            if (user) {
-                return next(null, user);
+    Gadget.findById(payload._id).exec()
+        .then(function (gadget) {
+            if (gadget) {
+                return next(null, gadget);
             } else {
                 return next(null, false);
             }
