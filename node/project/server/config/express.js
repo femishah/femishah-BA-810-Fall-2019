@@ -5,8 +5,6 @@ var mongoose = require('mongoose');
 const cors = require('cors');
 
 const fs = require('fs');
-
-
 const bodyParser = require('body-parser');
 
 module.exports = function (app, config) {

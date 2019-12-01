@@ -11,9 +11,8 @@ var TodosSchema = new Schema({
     status: { type: String, Enum: ['Todo', 'In Process', 'Completed'], default: 'Todo' },
     
     file : {
-        
-            name:        { type: String },
-            originalname: { type: String }
+        name:  { type: String },
+        originalname: { type: String }
         
     
     }

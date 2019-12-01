@@ -53,7 +53,7 @@ module.exports = function (app, config) {
                 if (todos) {
                     res.status(200).json(todos);
                 } else {
-                    res.status(404).json({ message: "No Todos found" });
+                    res.status(404).json({message: "No Todos found" });
                 }
             })
             .catch(error => {

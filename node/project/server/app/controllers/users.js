@@ -6,7 +6,7 @@ var express = require('express'),
     mongoose = require('mongoose'),
     User = mongoose.model('User'),
     passportService = require('../../config/passport'),
-passport = require('passport');
+    passport = require('passport');
 
 const requireLogin = passport.authenticate('local', { session: false });
 const requireAuth = passport.authenticate('jwt', { session: false });

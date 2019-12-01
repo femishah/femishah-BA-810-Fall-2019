@@ -4,7 +4,7 @@ env = process.env.NODE_ENV || 'development';
 var config = {
 development: {
     root: rootPath,
-    app: { name: 'UCCSS' },
+    app: { name: 'EventME' },
     port: 5000,
   db: 'mongodb://127.0.0.1/vendor-dev',
   secret: "cayennedlikedhistreats"
@@ -19,7 +19,7 @@ test: {
     
 production: {
     root: rootPath,
-    app: { name: 'UCCSS' },
+    app: { name: 'EventMe' },
     port: 80,
      db: 'mongodb://127.0.0.1/vendor-production',
      secret: "cayennedlikedhistreats"
