@@ -1,9 +1,9 @@
-import {AuthorizeStep} from 'aurelia-auth';
+import { AuthorizeStep } from 'aurelia-auth';
 
 export class App {
   configureRouter(config, router) {
     this.router = router;
-    config.addPipelineStep('authorize', AuthorizeStep); 
+    config.addPipelineStep('authorize', AuthorizeStep);
 
     config.title = 'Things ToDo';
     config.map([
@@ -14,8 +14,8 @@ export class App {
         title: 'Home',
         auth: false
 
-      
-},
+
+      },
 
       {
         route: 'users',
@@ -24,10 +24,10 @@ export class App {
         title: 'Users',
         auth: false
 
-       
-},
 
-      
+      },
+
+
 
       {
         route: 'todos',
@@ -36,7 +36,7 @@ export class App {
         title: 'Todos',
         auth: true
 
-       
+
 
 
       }

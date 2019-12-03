@@ -1,11 +1,9 @@
 // regenerator-runtime is to support async/await syntax in ESNext.
 // If you don't use async/await, you can remove regenerator-runtime.
-import 'regenerator-runtime/runtime';
 import environment from './environment';
+import config from './auth-config';
 import regeneratorRuntime from 'regenerator-runtime';
 window.regeneratorRuntime = regeneratorRuntime;
-import config from './auth-config';
-
 
 
 

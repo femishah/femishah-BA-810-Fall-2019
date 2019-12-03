@@ -28,7 +28,7 @@ export class NavBar {
                 sessionStorage.setItem("userObj", JSON.stringify(this.userObj));
                 this.loginError = "";
                 this.authenticated = this.auth.isAuthenticated();
-                this.router.navigate('home');
+                this.router.navigate('todos');
             })
             .catch(error => {
                 console.log(error);
@@ -45,6 +45,10 @@ export class NavBar {
     }
     bind() {
         this.authenticated = this.auth.isAuthenticated();
+    }
+
+    openRegisterNewUser(){
+        this.router.navigate('users');
     }
 
 
