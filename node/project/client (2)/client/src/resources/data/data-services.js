@@ -4,6 +4,7 @@ import { HttpClient, json } from 'aurelia-fetch-client';
 @inject(HttpClient)
 export class DataServices {
 
+    
     constructor(http) {
         this.httpClient = http;
         this.BASE_URL = "http://localhost:5000/api/";
