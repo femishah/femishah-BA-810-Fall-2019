@@ -27,5 +27,7 @@ export class Users {
             await this.users.saveUser(this.user);
         }
     }
-
+logout (){
+    this.router.navigate('home');
+}
 }
