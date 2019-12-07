@@ -2,7 +2,7 @@
 process.env.NODE_ENV = 'test';
 const mongoose = require("mongoose");
 User = require('../app/models/users');
-Vendor = require('../app/models/vendors');
+ var Vendor = require('../app/models/vendors');
 
 //Require the dev-dependencies
 let chai = require('chai');

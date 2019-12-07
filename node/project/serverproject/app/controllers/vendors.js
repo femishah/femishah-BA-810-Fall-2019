@@ -2,8 +2,8 @@
 var express = require('express'),
     router = express.Router(),
     logger = require('../../config/logger'),
-    mongoose = require('mongoose'),
-    Vendor = mongoose.model('vendors');
+    mongoose = require('mongoose');
+   var Vendor = mongoose.model('vendors');
 
 module.exports = function (app, config) {
     app.use('/api', router);//middleware that installs the router all routes will go below here in this loop only 
