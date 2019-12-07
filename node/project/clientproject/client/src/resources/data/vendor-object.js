@@ -4,7 +4,7 @@ import {DataServices} from './data-services';
 export class Vendor {
     constructor(data) {
             this.data = data;
-            this.VENDOR_SERVICE = 'vendors';
+            this.VENDOR_SERVICE ='vendors';
         }
 
 newVendor(id){

@@ -30,7 +30,7 @@ export class Vendors {
   }
 
   editVendor(vendor) {
-    this.todo.selectedTodo = todo;
+    this.todo.selectedVendor = vendor;
     this.showForm = true;
   }
 
@@ -41,7 +41,7 @@ export class Vendors {
   
 
   async deleteVendor(vendor) {
-    await this.vendor.deletevVendor(vendor._id);
+    await this.vendor.deleteVendor(vendor._id);
     this.getVendor();
     
   }

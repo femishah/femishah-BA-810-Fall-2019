@@ -17,7 +17,7 @@ export class App {
         route: 'users',
         name: 'users',
         moduleId: 'modules/users',
-        title: 'Users',
+        title: 'Users'
         //auth: true
 
       },

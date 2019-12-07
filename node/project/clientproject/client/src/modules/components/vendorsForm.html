@@ -10,7 +10,8 @@
           </select></div>
       <div class="form-group"><label for="vendorStatus">Due Date</label>
           <flat-picker controlid="startDate" value.bind="vendor.selectedVendor.dateDue"></flat-picker>
-      </div><button class="btn btn-primary" click.trigger="saveVendor()">Save</button><button class="btn btn-primary"
+      </div><button class="btn btn-primary" click.trigger="saveVendor()">Save</button>
+      <button class="btn btn-primary"
           click.trigger="Cancel()">Cancel</button>
   </form>
 </template>
