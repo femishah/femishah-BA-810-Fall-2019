@@ -4,7 +4,7 @@ export class App {
   configureRouter(config, router) {
     this.router = router;
     // config.addPipelineStep('authorize', AuthorizeStep); 
-    config.title = 'Widgets Universe!';
+    config.title = 'Widgets Exam!';
     config.map([
       {
         route: ['', 'widgets'],
